@@ -19,7 +19,13 @@
 
         document.getElementById('listRepos').addEventListener('click', async () => {
             const response = await fetch('https://api.github.com/users/Sakthi770/repos', {
-                headers: { 'Authorization': `Bearer ${token}` }
+                
+            headers: {
+                    'Accept': 'application/vnd.github+json',
+                    'Authorization': `Bearer ${token}`,
+                    'X-GitHub-Api-Version': '2022-11-28'
+                }
+
             });
             const repos = await response.json();
             const reposDiv = document.getElementById('repos');
@@ -34,7 +40,11 @@
 
         async function listWorkflows(repo) {
             const response = await fetch(`https://api.github.com/repos/Sakthi770/${repo}/actions/workflows`, {
-                headers: { 'Authorization': `Bearer ${token}` }
+                headers: {
+                    'Accept': 'application/vnd.github+json',
+                    'Authorization': `Bearer ${token}`,
+                    'X-GitHub-Api-Version': '2022-11-28'
+                }
             });
             const workflows = await response.json();
             const workflowsDiv = document.getElementById('workflows');
